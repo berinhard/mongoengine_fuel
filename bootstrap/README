@@ -1,0 +1,6 @@
+BOOTSTRAP SCRIPT
+================
+
+Run the below command to create a virtualenv
+
+$ python script/bootstrap.py --source . $WORKON_HOME/ecommerce
