@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 from mongoengine import *
 
 def gen_int_value(field):
@@ -14,6 +14,9 @@ def gen_int_value(field):
 
     return randint(min_value, max_value)
 
+def get_boolean_value(field):
+    return choice([True, False])
+
 class MongoFuel():
 
     def __init__(self, document):
@@ -25,7 +28,10 @@ class MongoFuel():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
 
-            attrs[field_name] = gen_int_value(field)
+            if isinstance(field, BooleanField):
+                attrs[field_name] = get_boolean_value(field)
+            else:
+                attrs[field_name] = gen_int_value(field)
 
         instance = self.document.objects.create(**attrs)
         return instance

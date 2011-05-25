@@ -17,3 +17,6 @@ class IntegerFieldDocumentWithZeroMinValue(Document):
 
 class IntegerFieldDocumentWithMaxAndMinValue(Document):
     int_field = IntField(min_value=5, max_value=10)
+
+class BooleanFieldDocument(Document):
+    bool_field = BooleanField()

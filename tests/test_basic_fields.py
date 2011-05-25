@@ -46,3 +46,11 @@ class IntegerFieldTests(MongoTestCase):
         document = fuel.create()
 
         self.assertTrue(document.int_field >= 0)
+
+class BooleanFiedTests(MongoTestCase):
+
+    def should_create_boolean_value_for_field(self):
+        fuel = MongoFuel(BooleanFieldDocument)
+        document = fuel.create()
+
+        self.assertIn(document.bool_field, [True, False])
