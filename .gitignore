@@ -5,3 +5,7 @@ man
 share
 .noseids
 mongoengine_fuel.egg-info/
+*.pyc
+*.pyo
+*.swp
+*.swo
