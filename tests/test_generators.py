@@ -1,9 +1,10 @@
-from test_case import MongoTestCase
+from unittest2 import TestCase
 from documents import *
 
 from mongoengine_fuel.generators import *
 
-class IntegerFieldTests(MongoTestCase):
+
+class IntegerFieldTests(TestCase):
 
     def should_create_int_value_for_field_with_no_boundaries(self):
         field = IntField()
@@ -42,7 +43,7 @@ class IntegerFieldTests(MongoTestCase):
         self.assertTrue(value >= 0)
 
 
-class BooleanFiedTests(MongoTestCase):
+class BooleanFiedTests(TestCase):
 
     def should_create_boolean_value_for_field(self):
         field = BooleanField()
@@ -51,7 +52,7 @@ class BooleanFiedTests(MongoTestCase):
         self.assertIn(value, [True, False])
 
 
-class StringFieldTests(MongoTestCase):
+class StringFieldTests(TestCase):
 
     def should_create_str_value_for_field_with_no_boundaries(self):
         field = StringField()
