@@ -11,3 +11,6 @@ class StringFieldDocument(Document):
 
 class FloatFieldDocument(Document):
     float_field = FloatField()
+
+class DecimalFieldDocument(Document):
+    decimal_field = DecimalField()

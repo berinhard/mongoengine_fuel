@@ -19,6 +19,8 @@ class MongoFuel():
                 attrs[field_name] = gen_str_value(field)
             elif isinstance(field, FloatField):
                 attrs[field_name] = gen_float_value(field)
+            elif isinstance(field, DecimalField):
+                attrs[field_name] = gen_decimal_value(field)
             else:
                 attrs[field_name] = gen_int_value(field)
 

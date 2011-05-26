@@ -1,7 +1,9 @@
 from test_case import MongoTestCase
-from documents import *
+from decimal import Decimal
 
+from documents import *
 from mongoengine_fuel import MongoFuel
+
 
 class DocumentFuelCreation(MongoTestCase):
 
@@ -29,6 +31,12 @@ class DocumentFuelCreation(MongoTestCase):
         document = fuel.create()
 
         self.assertIsInstance(document.float_field, float)
+
+    def should_work_for_decimal_field(self):
+        fuel = MongoFuel(DecimalFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.decimal_field, Decimal)
 
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
