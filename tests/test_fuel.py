@@ -39,6 +39,12 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIsInstance(document.decimal_field, Decimal)
 
+    def should_work_for_url_field(self):
+        fuel = MongoFuel(URLFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.url_field, str)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

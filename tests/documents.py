@@ -14,3 +14,6 @@ class FloatFieldDocument(Document):
 
 class DecimalFieldDocument(Document):
     decimal_field = DecimalField()
+
+class URLFieldDocument(Document):
+    url_field = URLField()
