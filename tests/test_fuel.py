@@ -1,6 +1,7 @@
-from test_case import MongoTestCase
 from decimal import Decimal
+from mongoengine import base, Document
 
+from test_case import MongoTestCase
 from documents import *
 from mongoengine_fuel import MongoFuel
 
@@ -43,3 +44,13 @@ class DocumentFuelCreation(MongoTestCase):
         document = fuel.create(int_field=3)
 
         self.assertEqual(document.int_field, 3)
+
+    def should_raise_value_error_if_field_is_not_supported(self):
+        class MyField(base.BaseField):
+            pass
+        class MyDocument(Document):
+            my_field = MyField()
+
+        fuel = MongoFuel(MyDocument)
+
+        self.assertRaises(ValueError, fuel.create)

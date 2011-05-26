@@ -33,3 +33,6 @@ class MongoFuel():
         for field_class, generator in self._fields_generators:
             if isinstance(field, field_class):
                 return generator
+
+        raise ValueError(u"%s isn't supported by mongoengine_fuel!"
+            % field.__class__)
