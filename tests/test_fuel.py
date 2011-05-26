@@ -24,6 +24,12 @@ class DocumentFuelCreation(MongoTestCase):
         self.assertIsInstance(document.str_field, str)
         self.assertTrue(document.str_field)
 
+    def should_work_for_float_field(self):
+        fuel = MongoFuel(FloatFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.float_field, float)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

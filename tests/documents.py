@@ -8,3 +8,6 @@ class BooleanFieldDocument(Document):
 
 class StringFieldDocument(Document):
     str_field = StringField()
+
+class FloatFieldDocument(Document):
+    float_field = FloatField()
