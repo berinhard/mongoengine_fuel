@@ -17,6 +17,13 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIn(document.bool_field, [True, False])
 
+    def should_work_for_boolean_field(self):
+        fuel = MongoFuel(StringFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.str_field, str)
+        self.assertTrue(document.str_field)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

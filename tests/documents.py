@@ -5,3 +5,6 @@ class IntegerFieldDocument(Document):
 
 class BooleanFieldDocument(Document):
     bool_field = BooleanField()
+
+class StringFieldDocument(Document):
+    str_field = StringField()

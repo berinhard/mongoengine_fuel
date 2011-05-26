@@ -15,6 +15,8 @@ class MongoFuel():
 
             if isinstance(field, BooleanField):
                 attrs[field_name] = gen_boolean_value(field)
+            elif isinstance(field, StringField):
+                attrs[field_name] = gen_str_value(field)
             else:
                 attrs[field_name] = gen_int_value(field)
 
