@@ -1,56 +1,50 @@
 from test_case import MongoTestCase
 from documents import *
 
-from mongoengine_fuel import MongoFuel
+from mongoengine_fuel.generators import *
 
 class IntegerFieldTests(MongoTestCase):
 
     def should_create_int_value_for_field_with_no_boundaries(self):
-        fuel = MongoFuel(IntegerFieldDocument)
-        document = fuel.create()
+        field = IntField()
+        value = gen_int_value(field)
 
-        self.assertTrue(document.int_field)
+        self.assertIsInstance(value, int)
 
     def should_create_int_value_for_field_with_max_value(self):
-        fuel = MongoFuel(IntegerFieldDocumentWithMaxValue)
-        document = fuel.create()
+        field = IntField(max_value=5)
+        value = gen_int_value(field)
 
-        self.assertTrue(document.int_field <= 5)
+        self.assertTrue(value <= 5)
 
     def should_create_int_value_for_field_with_min_value(self):
-        fuel = MongoFuel(IntegerFieldDocumentWithMinValue)
-        document = fuel.create()
+        field = IntField(min_value=5)
+        value = gen_int_value(field)
 
-        self.assertTrue(document.int_field >= 5)
+        self.assertTrue(value >= 5)
 
     def should_create_int_value_for_field_with_min_and_max_value(self):
-        fuel = MongoFuel(IntegerFieldDocumentWithMaxAndMinValue)
-        document = fuel.create()
+        field = IntField(min_value=5, max_value=10)
+        value = gen_int_value(field)
 
-        self.assertTrue(5 <= document.int_field <= 10)
-
-    def should_not_override_attrs_setted_by_the_user(self):
-        fuel = MongoFuel(IntegerFieldDocument)
-        document = fuel.create(int_field=3)
-
-        self.assertEqual(document.int_field, 3)
+        self.assertTrue(5 <= value <= 10)
 
     def must_work_with_max_value_equal_0(self):
-        fuel = MongoFuel(IntegerFieldDocumentWithZeroMaxValue)
-        document = fuel.create()
+        field = IntField(max_value=0)
+        value = gen_int_value(field)
 
-        self.assertTrue(document.int_field <= 0)
+        self.assertTrue(value <= 0)
 
     def must_work_with_min_value_equal_0(self):
-        fuel = MongoFuel(IntegerFieldDocumentWithZeroMinValue)
-        document = fuel.create()
+        field = IntField(min_value=0)
+        value = gen_int_value(field)
 
-        self.assertTrue(document.int_field >= 0)
+        self.assertTrue(value >= 0)
 
 class BooleanFiedTests(MongoTestCase):
 
     def should_create_boolean_value_for_field(self):
-        fuel = MongoFuel(BooleanFieldDocument)
-        document = fuel.create()
+        field = BooleanField()
+        value = gen_boolean_value(field)
 
-        self.assertIn(document.bool_field, [True, False])
+        self.assertIn(value, [True, False])
