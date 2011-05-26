@@ -1,17 +1,19 @@
 import string
 from random import randint, choice, random
 
+MAX_INT = 10000
+
+def _calc_limitis(min, max):
+    if min == None:
+        min_value = -MAX_INT
+    else:
+        min_value = min
+    max_value = max or min_value + MAX_INT
+
+    return min_value, max_value
 
 def gen_int_value(field):
-    if field.max_value == None:
-        max_value = 1000
-    else:
-        max_value = field.max_value
-
-    if field.min_value == None:
-        min_value = -1000
-    else:
-        min_value = field.min_value
+    min_value, max_value = _calc_limitis(field.min_value, field.max_value)
 
     return randint(min_value, max_value)
 
@@ -24,14 +26,10 @@ def gen_str_value(field):
 
     return ''.join(choice(string.ascii_letters) for x in range(min, max))
 
-def gen_float_field(field):
-    if field.min_value == None:
-        min_value = -100000
-    else:
-        min_value = field.min_value
-    max_value = field.max_value or min_value + 100000
+def gen_float_value(field):
+    min_value, max_value = _calc_limitis(field.min_value, field.max_value)
 
     midle_point = (max_value + min_value) / 2
-    offset = random() / 10000
+    offset = random() / MAX_INT
 
     return midle_point + offset
