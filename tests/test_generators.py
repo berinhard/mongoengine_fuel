@@ -78,3 +78,55 @@ class StringFieldTests(TestCase):
         value = gen_str_value(field)
 
         self.assertTrue(10 <= len(value) <= 20)
+
+
+class FloafFieldTests(TestCase):
+
+    def should_create_float_value_for_field_with_no_boundaries(self):
+        field = FloatField()
+        value = gen_float_field(field)
+
+        self.assertIsInstance(value, float)
+
+    def should_create_float_value_for_field_with_max_value(self):
+        field = FloatField(max_value=0.2)
+        value = gen_float_field(field)
+
+        self.assertTrue(value <= 0.2)
+
+    def should_create_float_value_for_field_with_min_value(self):
+        field = FloatField(min_value=1.8)
+        value = gen_float_field(field)
+
+        self.assertTrue(value >= 1.8)
+
+    def should_create_float_value_for_field_with_max_value_equal_0(self):
+        field = FloatField(max_value=0)
+        value = gen_float_field(field)
+
+        self.assertTrue(value <= 0)
+
+    def should_create_float_value_for_field_with_min_value_equal_0(self):
+        field = FloatField(min_value=0)
+        value = gen_float_field(field)
+
+        self.assertTrue(value >= 0)
+
+    def should_create_float_value_for_field_with_min_and_max_value(self):
+        field = FloatField(min_value=1.8, max_value=3.0)
+        value = gen_float_field(field)
+
+        print value
+        self.assertTrue(1.8 <= value <= 3.0)
+
+    def should_create_float_value_for_field_with_negative_min_and_max_value(self):
+        field = FloatField(min_value=-4.8, max_value=-3.0)
+        value = gen_float_field(field)
+
+        self.assertTrue(-4.8 <= value <= -3.0)
+
+    def should_create_float_value_for_field_with_small_interval_between_min_and_max_value(self):
+        field = FloatField(min_value=3.12, max_value=3.13)
+        value = gen_float_field(field)
+
+        self.assertTrue(3.12 <= value <= 3.13)
