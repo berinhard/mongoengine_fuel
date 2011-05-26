@@ -1,21 +1,6 @@
-from random import randint, choice
 from mongoengine import *
 
-def gen_int_value(field):
-    if field.max_value == None:
-        max_value = 1000
-    else:
-        max_value = field.max_value
-
-    if field.min_value == None:
-        min_value = -1000
-    else:
-        min_value = field.min_value
-
-    return randint(min_value, max_value)
-
-def get_boolean_value(field):
-    return choice([True, False])
+from generators import *
 
 class MongoFuel():
 
@@ -29,7 +14,7 @@ class MongoFuel():
                 continue
 
             if isinstance(field, BooleanField):
-                attrs[field_name] = get_boolean_value(field)
+                attrs[field_name] = gen_boolean_value(field)
             else:
                 attrs[field_name] = gen_int_value(field)
 
