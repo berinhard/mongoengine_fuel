@@ -41,6 +41,7 @@ class IntegerFieldTests(MongoTestCase):
 
         self.assertTrue(value >= 0)
 
+
 class BooleanFiedTests(MongoTestCase):
 
     def should_create_boolean_value_for_field(self):
@@ -48,3 +49,31 @@ class BooleanFiedTests(MongoTestCase):
         value = gen_boolean_value(field)
 
         self.assertIn(value, [True, False])
+
+
+class StringFieldTests(MongoTestCase):
+
+    def should_create_str_value_for_field_with_no_boundaries(self):
+        field = StringField()
+        value = gen_str_value(field)
+
+        self.assertIsInstance(value, str)
+        self.assertTrue(value)
+
+    def should_create_str_value_for_field_with_max_length(self):
+        field = StringField(max_length=10)
+        value = gen_str_value(field)
+
+        self.assertTrue(len(value) <= 10)
+
+    def should_create_str_value_for_field_with_min_length(self):
+        field = StringField(min_length=10)
+        value = gen_str_value(field)
+
+        self.assertTrue(len(value) >= 10)
+
+    def should_create_str_value_for_field_with_min_and_max_length(self):
+        field = StringField(min_length=10, max_length=20)
+        value = gen_str_value(field)
+
+        self.assertTrue(10 <= len(value) <= 20)

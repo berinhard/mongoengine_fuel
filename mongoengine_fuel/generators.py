@@ -1,4 +1,6 @@
+import string
 from random import randint, choice
+
 
 def gen_int_value(field):
     if field.max_value == None:
@@ -15,3 +17,9 @@ def gen_int_value(field):
 
 def gen_boolean_value(field):
     return choice([True, False])
+
+def gen_str_value(field):
+    min = field.min_length or 0
+    max = field.max_length or min + 10
+
+    return ''.join(choice(string.ascii_letters) for x in range(min, max))
