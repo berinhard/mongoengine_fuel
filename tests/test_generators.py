@@ -140,3 +140,13 @@ class FloafFieldTests(TestCase):
         value = gen_decimal_value(field)
 
         self.assertIsInstance(value, Decimal)
+
+
+class URLFieldTests(TestCase):
+
+    def should_create_an_random_url(self):
+        field = URLField()
+        value = gen_url_value(field)
+
+        self.assertIsInstance(value, str)
+        self.assertEqual(None, field.validate(value))

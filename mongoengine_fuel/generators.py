@@ -38,3 +38,7 @@ def gen_float_value(field):
 def gen_decimal_value(field):
     float_value = gen_float_value(field)
     return Decimal(str(float_value))
+
+def gen_url_value(field):
+    url = ''.join(choice(string.ascii_letters) for x in range(6))
+    return 'http://www.%s.com' % url
