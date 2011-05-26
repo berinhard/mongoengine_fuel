@@ -1,5 +1,6 @@
 import string
 from random import randint, choice, random
+from decimal import Decimal
 
 MAX_INT = 10000
 
@@ -33,3 +34,7 @@ def gen_float_value(field):
     offset = random() / MAX_INT
 
     return midle_point + offset
+
+def gen_decimal_value(field):
+    float_value = gen_float_value(field)
+    return Decimal(str(float_value))

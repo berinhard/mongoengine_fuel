@@ -1,6 +1,7 @@
 from unittest2 import TestCase
-from documents import *
+from decimal import Decimal
 
+from documents import *
 from mongoengine_fuel.generators import *
 
 
@@ -130,3 +131,12 @@ class FloafFieldTests(TestCase):
         value = gen_float_value(field)
 
         self.assertTrue(3.12 <= value <= 3.13)
+
+
+class FloafFieldTests(TestCase):
+
+    def should_create_decimal_value_for_field_with_no_boundaries(self):
+        field = DecimalField()
+        value = gen_decimal_value(field)
+
+        self.assertIsInstance(value, Decimal)
