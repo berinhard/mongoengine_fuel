@@ -32,7 +32,9 @@ class MongoFuel():
 
     def _get_generator(self, field):
         for field_class, generator in self._fields_generators:
-            if isinstance(field, field_class):
+            #isinstance method does not work for fields that has
+            # other fields as class parents, like URLField and StringField
+            if field.__class__ == field_class:
                 return generator
 
         raise ValueError(u"%s isn't supported by mongoengine_fuel!"
