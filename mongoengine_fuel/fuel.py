@@ -27,7 +27,7 @@ class MongoFuel():
             generator = self._get_generator(field)
             attrs[field_name] = generator(field)
 
-        instance = self.document.objects.create(**attrs)
+        instance = self.document(**attrs)
         return instance
 
     def _get_generator(self, field):

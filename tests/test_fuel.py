@@ -60,3 +60,14 @@ class DocumentFuelCreation(MongoTestCase):
         fuel = MongoFuel(MyDocument)
 
         self.assertRaises(ValueError, fuel.create)
+
+class EmbeddedDocumentFuelCreation(MongoTestCase):
+
+    def must_return_correct_instance(self):
+        fuel = MongoFuel(UsersEmbeddedDocument)
+
+        embedded_document = fuel.create()
+
+        self.assertIsInstance(embedded_document, UsersEmbeddedDocument)
+        self.assertIsInstance(embedded_document.name, str)
+        self.assertIsInstance(embedded_document.age, int)
