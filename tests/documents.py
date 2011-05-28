@@ -30,3 +30,6 @@ class UsersEmbeddedFieldDocument(Document):
 
 class ReferenceFieldDocument(Document):
     reference = ReferenceField(IntegerFieldDocument)
+
+class BasicListFieldDocument(Document):
+    int_list_field = ListField(IntField())

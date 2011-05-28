@@ -63,6 +63,15 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIsInstance(document.reference, IntegerFieldDocument)
 
+    def must_create_multiple_values_for_list_field_with_basic_fields(self):
+        fuel = MongoFuel(BasicListFieldDocument)
+        document = fuel.create()
+
+        self.assertTrue(document.int_list_field)
+        self.assertIsInstance(document.int_list_field, list)
+        for int_value in document.int_list_field:
+            self.assertIsInstance(int_value, int)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

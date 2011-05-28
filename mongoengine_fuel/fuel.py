@@ -1,3 +1,4 @@
+from random import randint
 from mongoengine import *
 
 from generators import *
@@ -25,7 +26,12 @@ class MongoFuel():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
 
-            if isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
+            if isinstance(field, ListField):
+                value = []
+                for i in range(0, randint(1, 10)):
+                    generator = self._get_generator(field.field)
+                    value.append(generator(field.field))
+            elif isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
                 new_fuel = MongoFuel(field.document_type)
                 value = new_fuel.create()
             else:
