@@ -150,3 +150,13 @@ class URLFieldTests(TestCase):
 
         self.assertIsInstance(value, str)
         self.assertEqual(None, field.validate(value))
+
+
+class EmailFieldTests(TestCase):
+
+    def should_create_an_random_email(self):
+        field = EmailField()
+        value = gen_email_value(field)
+
+        self.assertIsInstance(value, str)
+        self.assertEqual(None, field.validate(value))

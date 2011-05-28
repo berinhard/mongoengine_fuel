@@ -45,6 +45,12 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIsInstance(document.url_field, str)
 
+    def should_work_for_email_field(self):
+        fuel = MongoFuel(EmailFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.email_field, str)
+
     def should_work_for_embedded_document_field(self):
         fuel = MongoFuel(UsersEmbeddedFieldDocument)
         document = fuel.create()

@@ -42,3 +42,7 @@ def gen_decimal_value(field):
 def gen_url_value(field):
     url = ''.join(choice(string.ascii_letters) for x in range(6))
     return 'http://www.%s.com' % url
+
+def gen_email_value(field):
+    email = ''.join(choice(string.ascii_letters) for x in range(6))
+    return '%s@gmail.com' % email

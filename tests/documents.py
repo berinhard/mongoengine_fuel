@@ -18,6 +18,9 @@ class DecimalFieldDocument(Document):
 class URLFieldDocument(Document):
     url_field = URLField()
 
+class EmailFieldDocument(Document):
+    email_field = EmailField()
+
 class UsersEmbeddedDocument(EmbeddedDocument):
     name = StringField()
     age = IntField()

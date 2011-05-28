@@ -10,6 +10,7 @@ fields_generators_set = set([
     (DecimalField, gen_decimal_value),
     (IntField, gen_int_value),
     (URLField, gen_url_value),
+    (EmailField, gen_email_value),
 ])
 
 class MongoFuel():
