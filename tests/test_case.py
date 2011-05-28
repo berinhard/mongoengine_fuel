@@ -11,8 +11,8 @@ class MongoTestCase(TestCase):
         self.db = connect('mongoengine_fuel_test')
         super(MongoTestCase, self).__init__(methodName)
 
-    def _post_teardown(self):
-        super(MongoTestCase, self)._post_teardown()
+    def tearDown(self):
+        super(MongoTestCase, self).tearDown()
         for collection in self.db.collection_names():
             if collection == 'system.indexes':
                 continue
