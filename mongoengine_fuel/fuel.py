@@ -28,9 +28,15 @@ class MongoFuel():
 
             if isinstance(field, ListField):
                 value = []
+                list_field = field.field
                 for i in range(0, randint(1, 10)):
-                    generator = self._get_generator(field.field)
-                    value.append(generator(field.field))
+                    if isinstance(list_field, ReferenceField):
+                        new_fuel = MongoFuel(list_field.document_type)
+                        value.append(new_fuel.create())
+                    else:
+                        generator = self._get_generator(list_field)
+                        value.append(generator(list_field))
+
             elif isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
                 new_fuel = MongoFuel(field.document_type)
                 value = new_fuel.create()

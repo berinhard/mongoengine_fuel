@@ -33,3 +33,6 @@ class ReferenceFieldDocument(Document):
 
 class BasicListFieldDocument(Document):
     int_list_field = ListField(IntField())
+
+class ReferenceListFieldDocument(Document):
+    ref_list_field = ListField(ReferenceField(IntegerFieldDocument))
