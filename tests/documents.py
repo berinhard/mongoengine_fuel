@@ -24,3 +24,6 @@ class UsersEmbeddedDocument(EmbeddedDocument):
 
 class UsersEmbeddedFieldDocument(Document):
     user = EmbeddedDocumentField(UsersEmbeddedDocument)
+
+class ReferenceFieldDocument(Document):
+    reference = ReferenceField(IntegerFieldDocument)

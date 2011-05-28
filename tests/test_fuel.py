@@ -51,6 +51,12 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIsInstance(document.user, UsersEmbeddedDocument)
 
+    def should_work_for_reference_field(self):
+        fuel = MongoFuel(ReferenceFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.reference, IntegerFieldDocument)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

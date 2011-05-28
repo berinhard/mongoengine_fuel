@@ -24,7 +24,7 @@ class MongoFuel():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
 
-            if isinstance(field, EmbeddedDocumentField):
+            if isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
                 new_fuel = MongoFuel(field.document_type)
                 value = new_fuel.create()
             else:
