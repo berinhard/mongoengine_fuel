@@ -45,6 +45,12 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertIsInstance(document.url_field, str)
 
+    def should_work_for_embedded_document_field(self):
+        fuel = MongoFuel(UsersEmbeddedFieldDocument)
+        document = fuel.create()
+
+        self.assertIsInstance(document.user, UsersEmbeddedDocument)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)
@@ -60,6 +66,14 @@ class DocumentFuelCreation(MongoTestCase):
         fuel = MongoFuel(MyDocument)
 
         self.assertRaises(ValueError, fuel.create)
+
+    def should_persist_document_on_creation(self):
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+        fuel = MongoFuel(IntegerFieldDocument)
+        document = fuel.create()
+
+        self.assertEqual(IntegerFieldDocument.objects.count(), 1)
 
 class EmbeddedDocumentFuelCreation(MongoTestCase):
 

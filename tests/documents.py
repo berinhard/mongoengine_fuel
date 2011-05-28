@@ -21,3 +21,6 @@ class URLFieldDocument(Document):
 class UsersEmbeddedDocument(EmbeddedDocument):
     name = StringField()
     age = IntField()
+
+class UsersEmbeddedFieldDocument(Document):
+    user = EmbeddedDocumentField(UsersEmbeddedDocument)

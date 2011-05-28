@@ -24,10 +24,19 @@ class MongoFuel():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
 
-            generator = self._get_generator(field)
-            attrs[field_name] = generator(field)
+            if isinstance(field, EmbeddedDocumentField):
+                new_fuel = MongoFuel(field.document_type)
+                value = new_fuel.create()
+            else:
+                generator = self._get_generator(field)
+                value = generator(field)
+
+            attrs[field_name] = value
 
         instance = self.document(**attrs)
+        if issubclass(self.document, Document):
+            instance.save()
+
         return instance
 
     def _get_generator(self, field):
