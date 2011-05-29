@@ -114,6 +114,15 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertEqual(IntegerFieldDocument.objects.count(), 1)
 
+    def should_not_save_document_if_user_does_not_want_to(self):
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+        fuel = MongoFuel(IntegerFieldDocument)
+        document = fuel.create(persists=False)
+
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+
 class EmbeddedDocumentFuelCreation(MongoTestCase):
 
     def must_return_correct_instance(self):

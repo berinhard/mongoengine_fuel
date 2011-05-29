@@ -21,7 +21,7 @@ class MongoFuel():
         self.fields = document._fields
         self._fields_generators = fields_generators_set
 
-    def create(self, **attrs):
+    def create(self, persists=True, **attrs):
         for field_name, field in self.fields.items():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
@@ -38,7 +38,7 @@ class MongoFuel():
             attrs[field_name] = value
 
         instance = self.document(**attrs)
-        if issubclass(self.document, Document):
+        if persists and issubclass(self.document, Document):
             instance.save()
 
         return instance
