@@ -81,6 +81,15 @@ class DocumentFuelCreation(MongoTestCase):
         for ref_value in document.ref_list_field:
             self.assertIsInstance(ref_value, IntegerFieldDocument)
 
+    def must_create_multiple_values_for_list_field_with_embedded_document_field(self):
+        fuel = MongoFuel(EmbeddedDocumentListFieldDocument)
+        document = fuel.create()
+
+        self.assertTrue(document.emb_list_field)
+        self.assertIsInstance(document.emb_list_field, list)
+        for emb_value in document.emb_list_field:
+            self.assertIsInstance(emb_value, UsersEmbeddedDocument)
+
     def should_not_override_attrs_setted_by_the_user(self):
         fuel = MongoFuel(IntegerFieldDocument)
         document = fuel.create(int_field=3)

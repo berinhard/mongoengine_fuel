@@ -30,7 +30,7 @@ class MongoFuel():
                 value = []
                 list_field = field.field
                 for i in range(0, randint(1, 10)):
-                    if isinstance(list_field, ReferenceField):
+                    if isinstance(list_field, ReferenceField) or isinstance(list_field, EmbeddedDocumentField):
                         new_fuel = MongoFuel(list_field.document_type)
                         value.append(new_fuel.create())
                     else:

@@ -36,3 +36,6 @@ class BasicListFieldDocument(Document):
 
 class ReferenceListFieldDocument(Document):
     ref_list_field = ListField(ReferenceField(IntegerFieldDocument))
+
+class EmbeddedDocumentListFieldDocument(Document):
+    emb_list_field = ListField(EmbeddedDocumentField(UsersEmbeddedDocument))
