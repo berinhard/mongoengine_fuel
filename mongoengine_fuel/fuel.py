@@ -30,19 +30,10 @@ class MongoFuel():
                 value = []
                 list_field = field.field
                 for i in range(0, randint(1, 10)):
-                    if isinstance(list_field, ReferenceField) or isinstance(list_field, EmbeddedDocumentField):
-                        new_fuel = MongoFuel(list_field.document_type)
-                        value.append(new_fuel.create())
-                    else:
-                        generator = self._get_generator(list_field)
-                        value.append(generator(list_field))
-
-            elif isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
-                new_fuel = MongoFuel(field.document_type)
-                value = new_fuel.create()
+                    new_value = self._return_value_for_atomic_field(list_field)
+                    value.append(new_value)
             else:
-                generator = self._get_generator(field)
-                value = generator(field)
+                value = self._return_value_for_atomic_field(field)
 
             attrs[field_name] = value
 
@@ -51,6 +42,16 @@ class MongoFuel():
             instance.save()
 
         return instance
+
+    def _return_value_for_atomic_field(self, field):
+        if isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
+            new_fuel = MongoFuel(field.document_type)
+            value = new_fuel.create()
+        else:
+            generator = self._get_generator(field)
+            value = generator(field)
+
+        return value
 
     def _get_generator(self, field):
         for field_class, generator in self._fields_generators:
