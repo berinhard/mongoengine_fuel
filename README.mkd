@@ -31,20 +31,19 @@ class Car(Document):
             % (self.name, self.wheels, self.max_speed, self.owner)
 ```
 
-Now just add some fuel:
+Now, just add some fuel:
 
 ```
 from mongoengine_fuel import MongoFuel
-from you_models import Car, Person
+from your_models import Car, Person
 
 car = MongoFuel.create_one(Car)
 ```
 
-And now you can ride with your car! Note that mongoengine_fuel already handles relationships like ```ReferenceField``` at the example above.
-It creates an Person's instance automatically for you and persists both documents.
+And now you can ride with your car! Note that mongoengine_fuel already handles relationships like ```ReferenceField``` just like the example above. It creates an Person's instance automatically for you and persists both documents.
 
 ## Please, don't polute my database
-If you don't want the behaviour mentioned above, you just need to ask to don't save your document on the database like this:
+If you don't want the behaviour mentioned above, you just need to ask to mongoengine_fuel to don't save your document on the database like this:
 
 ```
 car = MongoFuel.create_one(Car, persists=False)
@@ -52,15 +51,15 @@ car = MongoFuel.create_one(Car, persists=False)
 
 This call will just return an Car's instance without saving it. The Person's instance which is created for you isn't save either.
 
-## I wanna a specif value for a field
-If you need a particular value for a field inside your model, you can force a value to it. You just need to give it as a parameter. Like this:
+## I wanna a specific value for a field
+If you need a particular value for a field inside your document, you can force a value to it. You just need to give it as a parameter. Like this:
 
 ```
-richar = Person.objects.create(name='Richard', age=30)
+richard = Person.objects.create(name='Richard', age=30)
 car = MongoFuel.create_one(Car, owner=richard)
 ```
 
-You will see that a random Car object is created, but, the owner is the one that you specified.
+You will see that a random Car object is created, but the owner is the one that you specified.
 
 ## What about embedded documents?
 mongoengine_fuel hanle with these guys to. It creates randoms embedded documents for you with exactly the same usage as common documents.
@@ -75,6 +74,7 @@ mongoengine_fuel hanle with these guys to. It creates randoms embedded documents
    * ```EmailField```
    * ```ReferenceField```
    * ```EmbeddedDocumentField```
+   * ```ListField```
 
 ## Any question, suggestion, applauses or tomatos?
 
