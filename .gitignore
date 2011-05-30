@@ -9,3 +9,4 @@ mongoengine_fuel.egg-info/
 *.pyo
 *.swp
 *.swo
+dist
