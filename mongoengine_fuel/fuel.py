@@ -14,6 +14,7 @@ fields_generators_set = set([
     (EmailField, gen_email_value),
 ])
 
+
 class MongoFuel():
 
     def __init__(self, document):
@@ -21,7 +22,12 @@ class MongoFuel():
         self.fields = document._fields
         self._fields_generators = fields_generators_set
 
-    def create(self, persists=True, **attrs):
+    @classmethod
+    def create_one(cls, document, persists=True, **args):
+        mongo_fuel = cls(document)
+        return mongo_fuel._create(persists=persists, **args)
+
+    def _create(self, persists=True, **attrs):
         for field_name, field in self.fields.items():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
@@ -46,7 +52,7 @@ class MongoFuel():
     def _return_value_for_atomic_field(self, field):
         if isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
             new_fuel = MongoFuel(field.document_type)
-            value = new_fuel.create()
+            value = new_fuel._create()
         else:
             generator = self._get_generator(field)
             value = generator(field)
