@@ -1,6 +1,6 @@
 # I guess you need some fuel before start your mongoengine, right?
 
-model_mommy is a tool for creating objects for testing in Python projetcs which uses mongoengine ORM to talk to MongoDB. mongoengine_fuel is inspired in model_mommy, a tool with the same purpose but for Django projects.
+mongoengine_fuel is a tool for creating objects for testing in Python projetcs which uses mongoengine ORM to talk to MongoDB. mongoengine_fuel is inspired in model_mommy, a tool with the same purpose but for Django projects.
 
 #Installing
 
@@ -66,15 +66,15 @@ You will see that a random Car object is created, but, the owner is the one that
 mongoengine_fuel hanle with these guys to. It creates randoms embedded documents for you with exactly the same usage as common documents.
 
 ## mongoengine's fields supported:
-   * BooleanField
-   * StringField
-   * FloatField
-   * DecimalField
-   * IntField
-   * URLField
-   * EmailField
-   * ReferenceField
-   * EmbeddedDocumentField
+   * ```BooleanField```
+   * ```StringField```
+   * ```FloatField```
+   * ```DecimalField```
+   * ```IntField```
+   * ```URLField```
+   * ```EmailField```
+   * ```ReferenceField```
+   * ```EmbeddedDocumentField```
 
 ## Any question, suggestion, applauses or tomatos?
 
