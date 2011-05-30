@@ -16,6 +16,7 @@ fields_generators_set = set([
 
 
 class MongoFuel():
+    '''A factory for mongoengine documents. You should user the classmethod create_one to return an instance of your document.'''
 
     def __init__(self, document):
         self.document = document
@@ -24,10 +25,15 @@ class MongoFuel():
 
     @classmethod
     def create_one(cls, document, persists=True, **args):
+        '''Returns an instance of the document parameter.
+        If persists is True, it saves the document on the database'''
+
         mongo_fuel = cls(document)
         return mongo_fuel._create(persists=persists, **args)
 
     def _create(self, persists=True, **attrs):
+        '''Returns an instance of MongoFuel's instance document'''
+
         for field_name, field in self.fields.items():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
@@ -50,6 +56,7 @@ class MongoFuel():
         return instance
 
     def _return_value_for_atomic_field(self, field):
+        '''Returns a random value for a given atomic field'''
         if isinstance(field, EmbeddedDocumentField) or isinstance(field, ReferenceField):
             new_fuel = MongoFuel(field.document_type)
             value = new_fuel._create()
@@ -60,6 +67,8 @@ class MongoFuel():
         return value
 
     def _get_generator(self, field):
+        '''Returns the function reponsible for creating a value for a given field'''
+
         for field_class, generator in self._fields_generators:
             #isinstance method does not work for fields that has
             # other fields as class parents, like URLField and StringField
