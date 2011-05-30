@@ -9,7 +9,10 @@ def _calc_limitis(min, max):
         min_value = -MAX_INT
     else:
         min_value = min
-    max_value = max or min_value + MAX_INT
+    if max == None:
+        max_value = MAX_INT
+    else:
+        max_value = max
 
     return min_value, max_value
 
