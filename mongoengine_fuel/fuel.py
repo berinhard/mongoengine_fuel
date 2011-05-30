@@ -12,6 +12,7 @@ fields_generators_set = set([
     (IntField, gen_int_value),
     (URLField, gen_url_value),
     (EmailField, gen_email_value),
+    (DateTimeField, gen_datetime_value),
 ])
 
 

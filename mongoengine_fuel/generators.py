@@ -1,6 +1,7 @@
 import string
 from random import randint, choice, random
 from decimal import Decimal
+from datetime import datetime
 
 MAX_INT = 10000
 
@@ -49,3 +50,6 @@ def gen_url_value(field):
 def gen_email_value(field):
     email = ''.join(choice(string.ascii_letters) for x in range(6))
     return '%s@gmail.com' % email
+
+def gen_datetime_value(field):
+    return datetime.now()

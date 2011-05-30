@@ -1,5 +1,6 @@
 from unittest2 import TestCase
 from decimal import Decimal
+from datetime import datetime
 
 from documents import *
 from mongoengine_fuel.generators import *
@@ -160,3 +161,12 @@ class EmailFieldTests(TestCase):
 
         self.assertIsInstance(value, str)
         self.assertEqual(None, field.validate(value))
+
+
+class DateTimeFieldTests(TestCase):
+
+    def should_create_a_datetime_object(self):
+        field = DateTimeField()
+        value = gen_datetime_value(field)
+
+        self.assertIsInstance(value, datetime)

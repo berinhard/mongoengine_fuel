@@ -21,6 +21,9 @@ class URLFieldDocument(Document):
 class EmailFieldDocument(Document):
     email_field = EmailField()
 
+class DatetimeFieldDocument(Document):
+    datetime_field = DateTimeField()
+
 class UsersEmbeddedDocument(EmbeddedDocument):
     name = StringField()
     age = IntField()

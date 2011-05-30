@@ -1,5 +1,6 @@
 from decimal import Decimal
 from mongoengine import base, Document
+from datetime import datetime
 
 from test_case import MongoTestCase
 from documents import *
@@ -62,6 +63,12 @@ class DocumentFuelCreation(MongoTestCase):
         document = fuel._create()
 
         self.assertIsInstance(document.reference, IntegerFieldDocument)
+
+    def should_work_for_datetime_field(self):
+        fuel = MongoFuel(DatetimeFieldDocument)
+        document = fuel._create()
+
+        self.assertIsInstance(document.datetime_field, datetime)
 
     def must_create_multiple_values_for_list_field_with_basic_fields(self):
         fuel = MongoFuel(BasicListFieldDocument)
