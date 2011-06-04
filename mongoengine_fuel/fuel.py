@@ -32,6 +32,16 @@ class MongoFuel():
         mongo_fuel = cls(document)
         return mongo_fuel._create(persists=persists, **args)
 
+    @classmethod
+    def create_many(cls, document, instances=5, persists=True):
+        documents = []
+        mongo_fuel = MongoFuel(document)
+
+        for i in range(0, instances):
+            documents.append(mongo_fuel._create(persists=persists))
+
+        return documents
+
     def _create(self, persists=True, **attrs):
         '''Returns an instance of MongoFuel's instance document'''
 

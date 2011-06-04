@@ -136,6 +136,28 @@ class DocumentFuelCreation(MongoTestCase):
 
         self.assertEqual(IntegerFieldDocument.objects.count(), 1)
 
+    def should_create_more_than_one_document(self):
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+        documents = MongoFuel.create_many(IntegerFieldDocument)
+
+        self.assertGreaterEqual(IntegerFieldDocument.objects.count(), 2)
+
+    def should_create_a_quantity_of_documents_that_user_want(self):
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+        documents = MongoFuel.create_many(IntegerFieldDocument, instances=3)
+
+        self.assertEqual(IntegerFieldDocument.objects.count(), 3)
+
+    def should_create_more_than_one_document_and_dont_persist(self):
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+
+        documents = MongoFuel.create_many(IntegerFieldDocument, persists=False)
+
+        self.assertEqual(IntegerFieldDocument.objects.count(), 0)
+        self.assertGreaterEqual(len(documents), 2)
+
 
 class EmbeddedDocumentFuelCreation(MongoTestCase):
 
