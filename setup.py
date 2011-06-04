@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='mongoengine_fuel',
     packages = ['mongoengine_fuel'],
-    version='1.0.1',
+    version='1.0.2',
     author='Bernardo Fontes',
     author_email='falecomigo@bernardofontes.net',
     url='http://github.com/berinhard/mongoengine_fuel',
