@@ -49,6 +49,15 @@ If you don't want the behaviour mentioned above, you just need to ask to mongoen
 car = MongoFuel.create_one(Car, persists=False)
 ```
 
+## I want more fuel!
+If you want to create more than one instance of your document, you can use ```create_many``` like this:
+```
+cars = MongoFuel.create_many(Car)
+
+persons = MongoFuel.create_many(Person, instances=3)
+```
+```create_many``` also accepts the ```persists``` parameter.
+
 This call will just return an Car's instance without saving it. The Person's instance which is created for you isn't save either.
 
 ## I wanna a specific value for a field
