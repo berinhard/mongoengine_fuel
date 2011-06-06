@@ -86,10 +86,10 @@ mongoengine_fuel hanle with these guys to. It creates randoms embedded documents
    * ```ListField```
 
 # How to contribute?
-1 - Fork it.
-2 - If you use virtualenv, clone your fork to your virtuaenvs dir. If you don't use it, you should do...
-3 - Inside the project dir, run ```python bootstrap/bootstrap.py```
-4 - Bootstrap script will create a virtualenv for mongoengine_fuel and install all dependencies. So, now, you just need to code =)
+1.  Fork it.
+2.  If you use virtualenv, clone your fork to your virtuaenvs dir. If you don't use it, you should do...
+3.  Inside the project dir, run ```python bootstrap/bootstrap.py```
+4.  Bootstrap script will create a virtualenv for mongoengine_fuel and install all dependencies. So, now, you just need to code =)
 
 ## Any question, suggestion, applauses or tomatos?
 
