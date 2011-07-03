@@ -2,6 +2,7 @@ bin
 include
 lib
 man
+build
 share
 .noseids
 mongoengine_fuel.egg-info/
