@@ -107,7 +107,7 @@ class DocumentFuelCreation(MongoTestCase):
         class MyField(base.BaseField):
             pass
         class MyDocument(Document):
-            my_field = MyField()
+            my_field = MyField(required=True)
 
         fuel = MongoFuel(MyDocument)
 
@@ -182,3 +182,10 @@ class FieldsAttrsBehaviour(MongoTestCase):
             default = field_obj.default
             self.assertEqual(value, default)
 
+    def should_not_create_fields_that_are_not_required(self):
+        doc = MongoFuel.create_one(NotRequiredFieldsDocument)
+        for field_name, field_obj in doc._fields.items():
+            if isinstance(field_obj, ObjectIdField):
+                continue
+            value = getattr(doc, field_name)
+            self.assertFalse(value)

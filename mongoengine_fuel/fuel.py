@@ -46,7 +46,7 @@ class MongoFuel():
         '''Returns an instance of MongoFuel's instance document'''
 
         for field_name, field in self.fields.items():
-            if isinstance(field, ObjectIdField) or field_name in attrs:
+            if isinstance(field, ObjectIdField) or field_name in attrs or not field.required:
                 continue
 
             if field.default is not None and \
