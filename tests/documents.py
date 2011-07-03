@@ -1,3 +1,5 @@
+from datetime import datetime
+from decimal import Decimal
 from mongoengine import *
 
 class IntegerFieldDocument(Document):
@@ -42,3 +44,14 @@ class ReferenceListFieldDocument(Document):
 
 class EmbeddedDocumentListFieldDocument(Document):
     emb_list_field = ListField(EmbeddedDocumentField(UsersEmbeddedDocument))
+
+class DefaultFieldsDocument(Document):
+    int_field = IntField(default=0)
+    bool_field = BooleanField(default=False)
+    str_field = StringField(default='default string')
+    float_field = FloatField(default=0.1)
+    decimal_field = DecimalField(default=Decimal(3))
+    url_field = URLField(default='http://test.com')
+    email_field = EmailField(default='test@server.com')
+    datetime_field = DateTimeField(default=datetime(2011, 1, 1))
+    list_field = ListField(IntField(), default=[3])

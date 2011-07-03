@@ -49,7 +49,10 @@ class MongoFuel():
             if isinstance(field, ObjectIdField) or field_name in attrs:
                 continue
 
-            if isinstance(field, ListField):
+            if field.default is not None and \
+                    not getattr(field.default, '__call__', None):
+                value = field.default
+            elif isinstance(field, ListField):
                 value = []
                 list_field = field.field
                 for i in range(0, randint(1, 10)):

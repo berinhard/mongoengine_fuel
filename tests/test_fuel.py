@@ -169,3 +169,16 @@ class EmbeddedDocumentFuelCreation(MongoTestCase):
         self.assertIsInstance(embedded_document, UsersEmbeddedDocument)
         self.assertIsInstance(embedded_document.name, str)
         self.assertIsInstance(embedded_document.age, int)
+
+
+class FieldsAttrsBehaviour(MongoTestCase):
+
+    def should_not_overrides_default_values(self):
+        doc = MongoFuel.create_one(DefaultFieldsDocument)
+        for field_name, field_obj in doc._fields.items():
+            if isinstance(field_obj, ObjectIdField):
+                continue
+            value = getattr(doc, field_name)
+            default = field_obj.default
+            self.assertEqual(value, default)
+
