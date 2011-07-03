@@ -68,3 +68,15 @@ class NotRequiredFieldsDocument(Document):
     email_field = EmailField(required=False)
     datetime_field = DateTimeField(required=False)
     list_field = ListField(IntField(), required=False)
+
+
+class FieldsWithChoicesDocument(Document):
+    int_field = IntField(choices=[0, 1], required=True)
+    bool_field = BooleanField(choices=[True, False], required=True)
+    str_field = StringField(choices=['choices string', 'other'], required=True)
+    float_field = FloatField(choices=[0.1, 0.2], required=True)
+    decimal_field = DecimalField(choices=[Decimal(3), Decimal(4)], required=True)
+    url_field = URLField(choices=['http://test.com', 'http://site.com'], required=True)
+    email_field = EmailField(choices=['admin@admin.com', 'test@server.com'], required=True)
+    datetime_field = DateTimeField(choices=[datetime(2011, 1, 1), datetime(2011, 12, 12)], required=True)
+    list_field = ListField(IntField(), choices=[[1, 2], [3, 4]], required=True)

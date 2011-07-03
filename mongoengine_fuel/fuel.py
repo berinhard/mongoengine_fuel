@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 from mongoengine import *
 
 from generators import *
@@ -52,6 +52,8 @@ class MongoFuel():
             if field.default is not None and \
                     not getattr(field.default, '__call__', None):
                 value = field.default
+            elif field.choices:
+                value = choice(field.choices)
             elif isinstance(field, ListField):
                 value = []
                 list_field = field.field

@@ -189,3 +189,11 @@ class FieldsAttrsBehaviour(MongoTestCase):
                 continue
             value = getattr(doc, field_name)
             self.assertFalse(value)
+
+    def should_use_choices_values(self):
+        doc = MongoFuel.create_one(FieldsWithChoicesDocument)
+        for field_name, field_obj in doc._fields.items():
+            if isinstance(field_obj, ObjectIdField):
+                continue
+            value = getattr(doc, field_name)
+            self.assertIn(value, field_obj.choices)
