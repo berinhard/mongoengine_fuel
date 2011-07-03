@@ -45,6 +45,7 @@ class ReferenceListFieldDocument(Document):
 class EmbeddedDocumentListFieldDocument(Document):
     emb_list_field = ListField(EmbeddedDocumentField(UsersEmbeddedDocument), required=True)
 
+
 class DefaultFieldsDocument(Document):
     int_field = IntField(default=0, required=True)
     bool_field = BooleanField(default=False, required=True)
@@ -55,6 +56,7 @@ class DefaultFieldsDocument(Document):
     email_field = EmailField(default='test@server.com', required=True)
     datetime_field = DateTimeField(default=datetime(2011, 1, 1), required=True)
     list_field = ListField(IntField(), default=[3], required=True)
+
 
 class NotRequiredFieldsDocument(Document):
     int_field = IntField(required=False)
