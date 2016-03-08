@@ -1,1 +1,1 @@
-from fuel import MongoFuel
+from .fuel import MongoFuel
