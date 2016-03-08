@@ -1,7 +1,7 @@
 from random import randint, choice
 from mongoengine import *
 
-from generators import *
+from .generators import *
 
 #This structure is necessary beacuse mongoengine fields aren't hashable objects
 fields_generators_set = set([
